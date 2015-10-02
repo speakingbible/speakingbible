@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+<script type="text/javascript">
+
+
+
+$(function() {
+
+
+   var people = [];
+
+   $.getJSON('word.json', function(data) {
+       $.each(data.Verses, function(i,f) {
+          var tblRow = "<i id='" + f.strt + "'>" + f.word + " </i> "
+           $(tblRow).appendTo("#userdata p");
+     });
+   });
+
+});
+
+
+</script>
+</head>
+
+<body>
+
+<div class="wrapper">
+<div class="profile">
+   <div id= "userdata" border="2">
+      <p>
+      </p>
+   </div>
+
+</div>
+</div>
+<script type="text/javascript">
+
+$(document).ready(function() {
+  alert("Hai I am working!");
+  $( "i" ).click(function(event) {
+      //alert( "Handler for .click() called." );
+      var iid = $(this).attr("id");
+      alert(iid);
+     //alert(event.target.id);
+    });
+
+});
+</script>
+</body>
+</html>
