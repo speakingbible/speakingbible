@@ -14,7 +14,7 @@
 
 <div class="wrapper">
 <div class="profile">
-   <div id= "userdata" border="2">
+   <div id= "userdata" border="2" style="width:400px;height:100px;overflow-y:scroll">
       <p>
       </p>
    </div>
@@ -40,10 +40,12 @@
 <span><button id="spbibaudio" type="button">Check Speed</button> </span>
 </div>
 </div>
+</body>
 <script type="text/javascript">
 
 $(document).ready(function() {
 var jsonWords = "";
+var divFrameTime = 20;
 $(function() {
 
 
@@ -58,17 +60,19 @@ $(function() {
 
 });
 
-  /*$("i").click(function() {
-      alert( "Handler for .click() called." );
-      var iid = $(this).attr("id");
-      alert(iid);
-	  //alert(jsonWords);
-     //alert(event.target.id);
-    });*/
-	$("#spbibaudio").bind("timeupdate", function() {
+	$("#spbibaudio").bind("timeupdate", function(event) {
+	    var currentTime = this.currentTime;
 		var currentTimeInMillis  = this.currentTime*1000;
-        //alert(currentTimeInMillis);
-		//var mydata = JSON.parse("Verses"");
+		if(currentTime >= divFrameTime && currentTime<= divFrameTime +0.5){
+		    var scrollingFactor = currentTime/divFrameTime;
+		   //alert(scrollingFactor);
+		   // $.scrollTo($('#userdata p'), scrollingFactor*currentTime);
+		    $('html, body').animate({
+        scrollTop: $("#userdata").offset().top
+    }, 2000);
+		    divFrameTime = divFrameTime + divFrameTime;
+		   
+		}
 		var prevWordStrTime = "";
 		$.each(jsonWords.Verses, function(i,f) {
 		 var startTime  = f.strt;
@@ -76,39 +80,14 @@ $(function() {
 		 prevWordStrTime = startTime;
 		 //alert(f.strt);
 		 if(parseInt(currentTimeInMillis) >= parseInt(startTime) && parseInt(currentTimeInMillis)<=parseInt(endTime)){
-			//var tblRow = f.strt + + f.word + " </i> "
-			//alert(f.word);
-			 //$("#red").attr();
-			 //$("#"+startTime).removeAttr("style");
-			 //$("#"+startTime).attr("style", "background-color:white");
-			//$("#"+startTime).attr("style", "background-color:blue");
 			 $("#"+startTime).effect( "highlight", {color:"blue"});
-			 //$("#"+startTime).animate({fontSize: '100px'}, "slow");
-		  } /*else if(startTime == "" || endTime == ""){
-		  //alert(startTime);
-		  //$("#userdata p").text().highlight(f.word);
-			// $("#"+f.strt).attr("style", "background-color:red");
-		 }*/
-           //$(tblRow).appendTo("#userdata p");
+		  } 
      });
-		//alert(jsonWords.word[0]);
     });
-	
-	 /*$("i").click(function(event){
- alert("1");
-        //$("p").removeAttr("style");
-    });*/
     
     $("#speed").change(function(event){
-        //var id = event.find('option:selected').attr('id');
-       //alert(id);
-         //alert(document.getElementById("speed").selected);
-         //var speedId =$(':selected').attr('option:id');
-         //alert(speedId);
-          var id = $(this).val();
-          alert(id);
+        var id = $(this).val();
         document.getElementById("spbibaudio").playbackRate=parseFloat(id);
-        //$("#spbibaudio").attr("playbackRate",0.1);//parseFloat(id);
     });
     $("#checkSpeed").click(function(){
          alert($("#spbibaudio").get("playbackRate"));
@@ -121,5 +100,4 @@ var vid = document.getElementById("spbibaudio");
 vid.currentTime = parseInt(event.id)/1000;
 }
 </script>
-</body>
 </html>
