@@ -24,6 +24,20 @@
 
 </audio>
 </div>
+<div><span>Speed</span>
+<span><select id="speed">
+  <option value="1">1.X</option>
+  <option value="0.9">0.9X</option>
+  <option value="0.8">0.8X</option>
+  <option value="0.7">0.7X</option>
+    <option value="0.6">0.6X</option>
+  <option value="0.5">0.5X</option>
+  <option value="0.4">0.4X</option>
+  <option value="0.3">0.3X</option>
+  <option value="0.2">0.2X</option>  
+  <option value="0.1">0.1X</option>
+</select></span>
+<span><button id="spbibaudio" type="button">Check Speed</button> </span>
 </div>
 </div>
 <script type="text/javascript">
@@ -84,6 +98,22 @@ $(function() {
  alert("1");
         //$("p").removeAttr("style");
     });*/
+    
+    $("#speed").change(function(event){
+        //var id = event.find('option:selected').attr('id');
+       //alert(id);
+         //alert(document.getElementById("speed").selected);
+         //var speedId =$(':selected').attr('option:id');
+         //alert(speedId);
+          var id = $(this).val();
+          alert(id);
+        document.getElementById("spbibaudio").playbackRate=parseFloat(id);
+        //$("#spbibaudio").attr("playbackRate",0.1);//parseFloat(id);
+    });
+    $("#checkSpeed").click(function(){
+         alert($("#spbibaudio").get("playbackRate"));
+        
+    });
 
 });
 function replayWord(event){
