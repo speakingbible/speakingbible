@@ -1,28 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+<!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script-->
+<!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script-->
 
-<script type="text/javascript">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+<!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script-->
 
-
-
-$(function() {
-
-
-   var people = [];
-
-   $.getJSON('word.json', function(data) {
-       $.each(data.Verses, function(i,f) {
-          var tblRow = "<i id='" + f.strt + "'>" + f.word + " </i> "
-           $(tblRow).appendTo("#userdata p");
-     });
-   });
-
-});
-
-
-</script>
 </head>
 
 <body>
@@ -33,21 +18,79 @@ $(function() {
       <p>
       </p>
    </div>
+<div>
+<audio id="spbibaudio" controls preload="auto">
+  <source src="43Joh001.mp3" type="audio/mpeg">
 
+</audio>
+</div>
 </div>
 </div>
 <script type="text/javascript">
 
 $(document).ready(function() {
-  alert("Hai I am working!");
-  $( "i" ).click(function(event) {
-      //alert( "Handler for .click() called." );
-      var iid = $(this).attr("id");
-      alert(iid);
-     //alert(event.target.id);
-    });
+var jsonWords = "";
+$(function() {
+
+
+   var people = [];
+   $.getJSON('word.json', function(data) {
+   jsonWords = data;
+       $.each(data.Verses, function(i,f) {
+          var tblRow = "<i onclick='replayWord(this)' id='" + f.strt + "'>" + f.word + " </i> "
+           $(tblRow).appendTo("#userdata p");
+     });
+   });
 
 });
+
+  /*$("i").click(function() {
+      alert( "Handler for .click() called." );
+      var iid = $(this).attr("id");
+      alert(iid);
+	  //alert(jsonWords);
+     //alert(event.target.id);
+    });*/
+	$("#spbibaudio").bind("timeupdate", function() {
+		var currentTimeInMillis  = this.currentTime*1000;
+        //alert(currentTimeInMillis);
+		//var mydata = JSON.parse("Verses"");
+		var prevWordStrTime = "";
+		$.each(jsonWords.Verses, function(i,f) {
+		 var startTime  = f.strt;
+		 var endTime = f.end;
+		 prevWordStrTime = startTime;
+		 //alert(f.strt);
+		 if(parseInt(currentTimeInMillis) >= parseInt(startTime) && parseInt(currentTimeInMillis)<=parseInt(endTime)){
+			//var tblRow = f.strt + + f.word + " </i> "
+			//alert(f.word);
+			 //$("#red").attr();
+			 //$("#"+startTime).removeAttr("style");
+			 //$("#"+startTime).attr("style", "background-color:white");
+			//$("#"+startTime).attr("style", "background-color:blue");
+			 $("#"+startTime).effect( "highlight", {color:"blue"});
+			 //$("#"+startTime).animate({fontSize: '100px'}, "slow");
+		  } /*else if(startTime == "" || endTime == ""){
+		  //alert(startTime);
+		  //$("#userdata p").text().highlight(f.word);
+			// $("#"+f.strt).attr("style", "background-color:red");
+		 }*/
+           //$(tblRow).appendTo("#userdata p");
+     });
+		//alert(jsonWords.word[0]);
+    });
+	
+	 /*$("i").click(function(event){
+ alert("1");
+        //$("p").removeAttr("style");
+    });*/
+
+});
+function replayWord(event){
+alert(event.id);
+var vid = document.getElementById("spbibaudio");
+vid.currentTime = parseInt(event.id)/1000;
+}
 </script>
 </body>
 </html>
