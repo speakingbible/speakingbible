@@ -6,6 +6,8 @@ public class DemoApplication {
 
 	public static void main(String[] args) throws Exception {
 
+	
+
 		System.out.println(" Enter 1 for json generation ");
 		try (Scanner scanner = new Scanner(System.in);) {
 			int code = scanner.nextInt();
