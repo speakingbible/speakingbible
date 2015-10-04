@@ -264,7 +264,7 @@ section{
       border-bottom: 5px solid $color_mountain_meadow_approx;
       h2 {
         @extend %extend_1;
-        color: $color_mountain_meadow_approx;
+        color: $white;
       }
     }
 }
@@ -371,7 +371,29 @@ section {
     }
     &.try {
       //color: $white;
+      padding: 100px 0px;
       background: $color_mountain_meadow_approx;
+      .try-head{
+        margin:0px 0px 30px 400px;
+      }
+      .word{
+        width:486px;
+        height:339px;
+        overflow-y:scroll;
+        background-color:white;
+        margin-left:128px;
+        margin-top: -370px;
+        padding: 10px
+      }
+      .player {
+        margin:40px 0px 0px 400px
+      }
+      .try-mobile{
+        margin-left:200px
+      }
+      .try-lang{
+        margin-top: -250px;
+      }
     }
   &.engage{
 

@@ -19,7 +19,7 @@
 <tr>
 <td>
    <div id= "userdata" style="width:310px;height:380px;overflow-y:scroll">
-      
+
    </div>
    </td>
    <td valign="top">
@@ -82,17 +82,7 @@ $(function() {
 	$("#spbibaudio").bind("timeupdate", function(event) {
 	    var currentTime = this.currentTime;
 		var currentTimeInMillis  = this.currentTime*1000;
-<<<<<<< HEAD
-		if(currentTime >= divFrameTime && currentTime<= divFrameTime +0.5){
-		    var scrollingFactor = currentTime/divFrameTime;
-		   //alert(scrollingFactor);
-		   // $.scrollTo($('#userdata p'), scrollingFactor*currentTime);
-		    $('html, body').animate({
-        scrollTop: $("#userdata").offset().top
-    }, 2000);
-		    divFrameTime = divFrameTime + divFrameTime;
 
-=======
 		if(currentTimeInMillis >= divFrameTime *1000 && currentTimeInMillis <= divFrameTime *1000 + 1000){
 		    var scrollingFactor = currentTime/audioFrameTime;
 			//var pos = $("#userdata").clientHeight();
@@ -101,7 +91,6 @@ $(function() {
 			var yScrollCoord = yCoord+"px";
 		    $("#userdata").animate({scrollTop: yScrollCoord});
 		    divFrameTime = divFrameTime + audioFrameTime;
->>>>>>> de64d86e75ffa7e07692ec5ab85254585e07b2ed
 		}
 		var prevWordStrTime = "";
 		$.each(jsonWords.Verses, function(i,f) {
@@ -136,9 +125,9 @@ $(function() {
            $(tblRow).appendTo("#userdata");
      });
    });
-		
+
    });
-	
+
 
 });
 function replayWord(event){

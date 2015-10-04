@@ -154,7 +154,7 @@ section#engage {
 section#try {
   border-bottom: 5px solid #81142b; }
   section#try h2 {
-    color: #81142b; }
+    color: #fff; }
 
 /* /USP Section */
 @media (min-width: 768px) {
@@ -229,7 +229,24 @@ section {
         outline: 0;
         color: #5c0e1f; }
   section.try {
+    padding: 100px 0px;
     background: #81142b; }
+    section.try .try-head {
+      margin: 0px 0px 30px 400px; }
+    section.try .word {
+      width: 486px;
+      height: 339px;
+      overflow-y: scroll;
+      background-color: white;
+      margin-left: 128px;
+      margin-top: -370px;
+      padding: 10px; }
+    section.try .player {
+      margin: 40px 0px 0px 400px; }
+    section.try .try-mobile {
+      margin-left: 200px; }
+    section.try .try-lang {
+      margin-top: -250px; }
   section.engage {
     padding: 150px 0px 5px; }
     section.engage .form-box {
