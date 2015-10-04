@@ -24,11 +24,8 @@
    </td>
    <td valign="top">
    <div>
-   <span>Version/Chapter</span>
-  <select id="chapter">
-  <option value="eng_john_1">English Demo</option>
-  <option value="hindi_john_15">Hindi Demo</option>
-</select>
+   <img id="eng_john_1" src="english-A.png" style="cursor:pointer"/>
+   <img id="hindi_john_15" src="hindi-aa.png" style="cursor:pointer"/>
    </div>
    </td>
    </tr>
@@ -36,26 +33,15 @@
    </div>
 <div>
 <audio id="spbibaudio" controls preload="auto">
-<<<<<<< HEAD
-  <source src="43Joh001.mp3" type="audio/mpeg">
-=======
   <source src="eng_john_1.mp3" type="audio/mpeg">
-
->>>>>>> de64d86e75ffa7e07692ec5ab85254585e07b2ed
 </audio>
 </div>
 <div><span>Speed</span>
 <span><select id="speed">
-  <option value="1">1.X</option>
+  <option value="1">1X</option>
   <option value="0.9">0.9X</option>
   <option value="0.8">0.8X</option>
   <option value="0.7">0.7X</option>
-  <option value="0.6">0.6X</option>
-  <option value="0.5">0.5X</option>
-  <option value="0.4">0.4X</option>
-  <option value="0.3">0.3X</option>
-  <option value="0.2">0.2X</option>
-  <option value="0.1">0.1X</option>
 </select></span>
 </div>
 </div>
@@ -85,8 +71,6 @@ $(function() {
 
 		if(currentTimeInMillis >= divFrameTime *1000 && currentTimeInMillis <= divFrameTime *1000 + 1000){
 		    var scrollingFactor = currentTime/audioFrameTime;
-			//var pos = $("#userdata").clientHeight();
-			//alert(pos);
 			var yCoord = 114 * scrollingFactor;
 			var yScrollCoord = yCoord+"px";
 		    $("#userdata").animate({scrollTop: yScrollCoord});
@@ -111,21 +95,22 @@ $(function() {
          alert($("#spbibaudio").get("playbackRate"));
 
     });
-	$("#chapter").change(function(){
-		var chapter = $(this).val();
-		divFrameTime = 20;
-		audioFrameTime = 20;
-		var chapterJson = chapter + ".json";
-		$.getJSON(chapterJson, function(data) {
-        jsonWords = data;
-		$("#userdata").text('');
-		document.getElementById("spbibaudio").src = chapter +".mp3";
-       $.each(data.Verses, function(i,f) {
-          var tblRow = "<i onclick='replayWord(this)' id='" + f.strt + "'>" + f.word + " </i> "
-           $(tblRow).appendTo("#userdata");
-     });
-   });
-
+	$("img").click(function(){
+		var chapter = $(this).attr("id");
+			if(chapter == 'eng_john_1' || chapter == 'hindi_john_15'){
+				divFrameTime = 20;
+				audioFrameTime = 20;
+				var chapterJson = chapter + ".json";
+				$.getJSON(chapterJson, function(data) {
+				jsonWords = data;
+				$("#userdata").text('');
+				document.getElementById("spbibaudio").src = chapter +".mp3";
+				$.each(data.Verses, function(i,f) {
+				  var tblRow = "<i onclick='replayWord(this)' id='" + f.strt + "'>" + f.word + " </i> "
+				   $(tblRow).appendTo("#userdata");
+				});
+			});
+		}
    });
 
 
