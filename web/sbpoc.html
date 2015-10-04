@@ -24,11 +24,8 @@
    </td>
    <td valign="top">
    <div>
-   <span>Version/Chapter</span>
-  <select id="chapter">
-  <option value="eng_john_1">English Demo</option>
-  <option value="hindi_john_15">ह</option>
-</select>
+   <img id="eng_john_1" src="english-A.png" style="cursor:pointer"/>
+   <img id="hindi_john_15" src="hindi-aa.png" style="cursor:pointer"/>
    </div>
    </td>
    </tr>
@@ -74,7 +71,6 @@ $(function() {
 		var currentTimeInMillis  = this.currentTime*1000;
 		if(currentTimeInMillis >= divFrameTime *1000 && currentTimeInMillis <= divFrameTime *1000 + 1000){
 		    var scrollingFactor = currentTime/audioFrameTime;
-			//var pos = $("#userdata").clientHeight();
 			var yCoord = 114 * scrollingFactor;
 			var yScrollCoord = yCoord+"px";
 		    $("#userdata").animate({scrollTop: yScrollCoord});
@@ -99,20 +95,22 @@ $(function() {
          alert($("#spbibaudio").get("playbackRate"));
         
     });
-	$("#chapter").change(function(){
-		var chapter = $(this).val();
-		divFrameTime = 20;
-		audioFrameTime = 20;
-		var chapterJson = chapter + ".json";
-		$.getJSON(chapterJson, function(data) {
-        jsonWords = data;
-		$("#userdata").text('');
-		document.getElementById("spbibaudio").src = chapter +".mp3";
-       $.each(data.Verses, function(i,f) {
-          var tblRow = "<i onclick='replayWord(this)' id='" + f.strt + "'>" + f.word + " </i> "
-           $(tblRow).appendTo("#userdata");
-     });
-   });
+	$("img").click(function(){
+		var chapter = $(this).attr("id");
+			if(chapter == 'eng_john_1' || chapter == 'hindi_john_15'){
+				divFrameTime = 20;
+				audioFrameTime = 20;
+				var chapterJson = chapter + ".json";
+				$.getJSON(chapterJson, function(data) {
+				jsonWords = data;
+				$("#userdata").text('');
+				document.getElementById("spbibaudio").src = chapter +".mp3";
+				$.each(data.Verses, function(i,f) {
+				  var tblRow = "<i onclick='replayWord(this)' id='" + f.strt + "'>" + f.word + " </i> "
+				   $(tblRow).appendTo("#userdata");
+				});
+			});
+		}
 		
    });
 	
