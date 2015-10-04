@@ -247,6 +247,11 @@ section {
       margin-left: 200px; }
     section.try .try-lang {
       margin-top: -250px; }
+    section.try .speed {
+      margin: 20px 0px 0px 450px; }
+      section.try .speed span {
+        margin-right: 10px;
+        color: #FFF; }
   section.engage {
     padding: 150px 0px 5px; }
     section.engage .form-box {
