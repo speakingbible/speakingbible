@@ -2,7 +2,7 @@
 /* #18bc9c; */
 /*#2c3e50;*/
 /* #233140; */
-h1, h2, h3, h4, h5, h6, .home-usp-video h2, section#community h2, section#engage h2 {
+h1, h2, h3, h4, h5, h6, .home-usp-video h2, section#community h2, section#engage h2, section#try h2 {
   text-transform: uppercase;
   font-family: Montserrat, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 700; }
@@ -151,6 +151,10 @@ section#engage {
   border-bottom: 5px solid #81142b; }
   section#engage h2 {
     color: #81142b; }
+section#try {
+  border-bottom: 5px solid #81142b; }
+  section#try h2 {
+    color: #fff; }
 
 /* /USP Section */
 @media (min-width: 768px) {
@@ -224,6 +228,25 @@ section {
       section.what a.active {
         outline: 0;
         color: #5c0e1f; }
+  section.try {
+    padding: 100px 0px;
+    background: #81142b; }
+    section.try .try-head {
+      margin: 0px 0px 30px 400px; }
+    section.try .word {
+      width: 486px;
+      height: 339px;
+      overflow-y: scroll;
+      background-color: white;
+      margin-left: 128px;
+      margin-top: -370px;
+      padding: 10px; }
+    section.try .player {
+      margin: 40px 0px 0px 400px; }
+    section.try .try-mobile {
+      margin-left: 200px; }
+    section.try .try-lang {
+      margin-top: -250px; }
   section.engage {
     padding: 150px 0px 5px; }
     section.engage .form-box {
@@ -305,8 +328,7 @@ div.community-tab-content {
 
 .list-group-item {
   height: 150px !important;
-  padding-top: 8%;
-  background-color: ##ECF0F1; }
+  padding-top: 8%; }
 
 div.community-tab {
   min-height: 450px; }
