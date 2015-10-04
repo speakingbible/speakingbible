@@ -316,6 +316,15 @@
             <source src="43Joh001.mp3" type="audio/mpeg">
           </audio>
         </div>
+        <div class="speed pull-left">
+          <span><b>Speed :  </b></span>
+          <select id="speed">
+          <option value="1">1X</option>
+          <option value="0.9">0.9X</option>
+          <option value="0.8">0.8X</option>
+          <option value="0.7">0.7X</option>
+          </select>
+        </div>
       </div>
     </section>
     <!-- Engage With Us Section -->
@@ -604,7 +613,7 @@
 
               if(currentTimeInMillis >= divFrameTime *1000 && currentTimeInMillis <= divFrameTime *1000 + 1000){
                   var scrollingFactor = currentTime/audioFrameTime;
-                var yCoord = 114 * scrollingFactor;
+                var yCoord = 96 * scrollingFactor;
                 var yScrollCoord = yCoord+"px";
                   $("#userdata").animate({scrollTop: yScrollCoord});
                   divFrameTime = divFrameTime + audioFrameTime;
