@@ -3,9 +3,9 @@ package demo;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -78,8 +78,10 @@ public class CMU2JsonConvertor {
 		int counter = 0;
 		jGenerator.writeFieldName("Verses");
 		jGenerator.writeStartArray();
-		try (BufferedReader bf = new BufferedReader(new FileReader(dir2))) {
-			while ((line = bf.readLine()) != null) {
+		try (BufferedReader bf = new BufferedReader(new InputStreamReader(
+				new FileInputStream(dir2), StandardCharsets.UTF_8))) {
+
+			while ((line = bf.readLine()) != null && line.trim().length() > 0) {
 
 				if (line.startsWith("+"))
 					continue;
