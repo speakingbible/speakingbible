@@ -305,10 +305,10 @@
         </div>
         <div class="try-lang pull-right">
           <div class="try-english">
-              <img src="img/english-A.png" />
+              <img id="eng_john_1" src="img/english-A.png" />
           </div>
           <div class="try-hindi">
-              <img src="img/hindi-aa.png" />
+              <img id="hindi_john_15" src="img/hindi-aa.png" />
           </div>
         </div>
         <div id="player" class="player">
@@ -598,39 +598,53 @@
 
             });
 
-            	$("#spbibaudio").bind("timeupdate", function(event) {
-            	    var currentTime = this.currentTime;
-            		var currentTimeInMillis  = this.currentTime*1000;
-            		if(currentTime >= divFrameTime && currentTime<= divFrameTime +0.5){
-            		    var scrollingFactor = currentTime/divFrameTime;
-            		   //alert(scrollingFactor);
-            		   // $.scrollTo($('#userdata p'), scrollingFactor*currentTime);
-            		    $('html, body').animate({
-                    scrollTop: $("#userdata").offset().top
-                }, 2000);
-            		    divFrameTime = divFrameTime + divFrameTime;
+            $("#spbibaudio").bind("timeupdate", function(event) {
+                var currentTime = this.currentTime;
+              var currentTimeInMillis  = this.currentTime*1000;
 
-            		}
-            		var prevWordStrTime = "";
-            		$.each(jsonWords.Verses, function(i,f) {
-            		 var startTime  = f.strt;
-            		 var endTime = f.end;
-            		 prevWordStrTime = startTime;
-            		 //alert(f.strt);
-            		 if(parseInt(currentTimeInMillis) >= parseInt(startTime) && parseInt(currentTimeInMillis)<=parseInt(endTime)){
-            			 $("#"+startTime).effect( "highlight", {color:"#FCBBC9"});
-            		  }
-                 });
-                });
+              if(currentTimeInMillis >= divFrameTime *1000 && currentTimeInMillis <= divFrameTime *1000 + 1000){
+                  var scrollingFactor = currentTime/audioFrameTime;
+                var yCoord = 114 * scrollingFactor;
+                var yScrollCoord = yCoord+"px";
+                  $("#userdata").animate({scrollTop: yScrollCoord});
+                  divFrameTime = divFrameTime + audioFrameTime;
+              }
+              var prevWordStrTime = "";
+              $.each(jsonWords.Verses, function(i,f) {
+               var startTime  = f.strt;
+               var endTime = f.end;
+               prevWordStrTime = startTime;
+               if(parseInt(currentTimeInMillis) >= parseInt(startTime) && parseInt(currentTimeInMillis)<=parseInt(endTime)){
+                 $("#"+startTime).effect( "highlight", {color:"#FCBBC9"});
+                }
+               });
+              });
 
-                $("#speed").change(function(event){
-                    var id = $(this).val();
-                    document.getElementById("spbibaudio").playbackRate=parseFloat(id);
-                });
-                $("#checkSpeed").click(function(){
-                     alert($("#spbibaudio").get("playbackRate"));
+              $("#speed").change(function(event){
+                  var id = $(this).val();
+                  document.getElementById("spbibaudio").playbackRate=parseFloat(id);
+              });
+              $("#checkSpeed").click(function(){
+                   alert($("#spbibaudio").get("playbackRate"));
 
+              });
+            $("img").click(function(){
+              var chapter = $(this).attr("id");
+                if(chapter == 'eng_john_1' || chapter == 'hindi_john_15'){
+                  divFrameTime = 20;
+                  audioFrameTime = 20;
+                  var chapterJson = chapter + ".json";
+                  $.getJSON(chapterJson, function(data) {
+                  jsonWords = data;
+                  $("#userdata").text('');
+                  document.getElementById("spbibaudio").src = chapter +".mp3";
+                  $.each(data.Verses, function(i,f) {
+                    var tblRow = "<i onclick='replayWord(this)' id='" + f.strt + "'>" + f.word + " </i> "
+                     $(tblRow).appendTo("#userdata");
+                  });
                 });
+              }
+             });
 
             });
             function replayWord(event){
