@@ -27,7 +27,7 @@
    <span>Version/Chapter</span>
   <select id="chapter">
   <option value="eng_john_1">English Demo</option>
-  <option value="hindi_john_15">Hindi Demo</option>
+  <option value="hindi_john_15">ह</option>
 </select>
    </div>
    </td>
@@ -42,16 +42,10 @@
 </div>
 <div><span>Speed</span>
 <span><select id="speed">
-  <option value="1">1.X</option>
+  <option value="1">1X</option>
   <option value="0.9">0.9X</option>
   <option value="0.8">0.8X</option>
   <option value="0.7">0.7X</option>
-  <option value="0.6">0.6X</option>
-  <option value="0.5">0.5X</option>
-  <option value="0.4">0.4X</option>
-  <option value="0.3">0.3X</option>
-  <option value="0.2">0.2X</option>  
-  <option value="0.1">0.1X</option>
 </select></span>
 </div>
 </div>
@@ -81,7 +75,6 @@ $(function() {
 		if(currentTimeInMillis >= divFrameTime *1000 && currentTimeInMillis <= divFrameTime *1000 + 1000){
 		    var scrollingFactor = currentTime/audioFrameTime;
 			//var pos = $("#userdata").clientHeight();
-			//alert(pos);
 			var yCoord = 114 * scrollingFactor;
 			var yScrollCoord = yCoord+"px";
 		    $("#userdata").animate({scrollTop: yScrollCoord});
