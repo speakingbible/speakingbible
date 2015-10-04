@@ -81,7 +81,9 @@ public class CMU2JsonConvertor {
 		try (BufferedReader bf = new BufferedReader(new InputStreamReader(
 				new FileInputStream(dir2), StandardCharsets.UTF_8))) {
 
-			while ((line = bf.readLine()) != null && line.trim().length() > 0) {
+			while ((line = bf.readLine()) != null) {
+				if(line.trim().length() == 0)
+					continue;
 
 				if (line.startsWith("+"))
 					continue;
