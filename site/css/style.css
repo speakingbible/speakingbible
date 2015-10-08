@@ -292,6 +292,9 @@ div.community-tab-menu div.list-group {
 
 div.community-tab-menu div.list-group > a {
   margin-bottom: 0; }
+  div.community-tab-menu div.list-group > a .fa {
+    font-size: 26px;
+    line-height: 5px; }
 
 div.community-tab-menu div.list-group > a .glyphicon,
 div.community-tab-menu div.list-group > a .fa {
@@ -327,7 +330,8 @@ div.community-tab-content {
   background-color: #ffffff;
   /* border: 1px solid #eeeeee; */
   padding-left: 20px;
-  padding-top: 10px; }
+  padding-top: 10px;
+  word-wrap: break-word; }
   div.community-tab-content h2 {
     padding: 25px; }
 
@@ -338,8 +342,10 @@ div.community-tab-content {
 div.community-tab {
   min-height: 450px; }
   div.community-tab img {
-    height: 280px;
-    width: 280px; }
+    max-height: 280px;
+    max-width: 280px;
+    width: 100%;
+    height: 100%; }
 
 .big-bullets {
   font-size: 25px; }
@@ -541,5 +547,30 @@ footer {
 
 form .row:first-child .floating-label-form-group {
   border-top: 1px solid #eee; }
+
+/* for mobile devices */
+@media (min-device-width: 360px) and (max-device-width: 640px) {
+  .list-group-item {
+    height: 70px !important;
+    padding-top: 7%; }
+
+  div.community-tab-menu div.list-group > a .fa {
+    font-size: 35px;
+    line-height: 23px; }
+
+  div.community-tab-menu div.list-group > a.active::after {
+    content: "";
+    position: absolute;
+    left: 40%;
+    top: 120%;
+    margin-top: -13px;
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-top: 10px solid #81142b; }
+
+  section#community h2 {
+    color: #81142B;
+    font-size: 25px; } }
+/* /for mobile devices */
 
 /*# sourceMappingURL=style.css.map */
